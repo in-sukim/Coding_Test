@@ -5,7 +5,7 @@ def solution(s):
     for word in s:
         if word:
             answer.append(word[0].upper() + word[1:].lower())
-        else:
-            answer.append(word)
-    print(answer)
+        elif word == '' or word == '\n':
+            answer.append('')
+            pass
     return ' '.join(answer)
