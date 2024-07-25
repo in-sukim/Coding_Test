@@ -7,7 +7,7 @@ def solution(phone_book):
     for phone in phone_book:
         phone_dic[phone] = hash(phone)
 
-    phone_book.sort(key =  lambda x: len(x), reverse = True)
+    # phone_book.sort(key =  lambda x: len(x), reverse = True)
     for phone in phone_book:
         temp = ''
         for num in phone:
