@@ -1,15 +1,15 @@
-def solution(numbers,target):
-    result = [0]
-    cnt = 0
+from collections import deque
+def solution(numbers, target):
+    answer = 0
+    q = deque([(0,0)])
+    while q:
+        cur_sum, cur_idx = q.popleft()
 
-    for num in numbers:
-        temp = []
-        for i in result:
-            temp.append(i - num)
-            temp.append(i + num)
-        result = temp
-        
-    for i in  result:
-        if i == target:
-            cnt += 1
-    return cnt
+        if cur_idx == len(numbers):
+            if cur_sum == target:
+                answer += 1
+        else:
+            number = numbers[cur_idx]
+            q.append((cur_sum + number, cur_idx + 1))
+            q.append((cur_sum - number, cur_idx + 1))
+    return answer
