@@ -6,7 +6,6 @@ def solution(arrayA, arrayB):
     for i in range(len(arrayA)):
         a = math.gcd(a, arrayA[i])
         b = math.gcd(b, arrayB[i])
-    print(a,b)
     
     cul = 1
     young = 1
