@@ -1,15 +1,13 @@
 def solution(book_time):
+    def convert_min(str_time:str) -> int:
+        h,m = map(int, str_time.split(':'))
+        return (h * 60) + m
+        
     book_list = []
     for book in book_time:
-        start, end = book
-        
-        start_h, start_m = start.split(':')
-        end_h, end_m = end.split(':')
-        
-        start_time = int(start_h) * 60 + int(start_m)
-        end_time = int(end_h) * 60 + int(end_m) + 10
-        
-        book_list.append([start_time, end_time])
+        start, end = map(convert_min, book)
+        print(start, end)
+        book_list.append([start, end+10])
     book_list.sort(key = lambda x:(x[0],x[1]))
     
     rooms = []
