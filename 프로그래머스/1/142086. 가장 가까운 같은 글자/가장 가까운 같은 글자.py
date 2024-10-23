@@ -1,15 +1,11 @@
 def solution(s):
-    chr_list = []
     answer = []
-    for idx, i in enumerate(s):
-        if i not in chr_list:
+    dic = dict()
+    for i in range(len(s)):
+        if s[i] not in dic:
             answer.append(-1)
         else:
-            exists_idx = 0
-            for chr_idx, chr in enumerate(chr_list):
-                if i == chr:
-                    exists_idx = chr_idx
-            answer.append(idx - exists_idx)
-            
-        chr_list.append(i)
+            answer.append(i - dic[s[i]])
+        dic[s[i]] = i
+
     return answer
