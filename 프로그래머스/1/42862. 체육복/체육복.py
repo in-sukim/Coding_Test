@@ -1,6 +1,4 @@
 def solution(n, lost, reserve):
-    # lost = [i for i in lost if i not in reserve]
-    # reserve = [i for i in lost if i not in lost]
     inter_num = set(reserve).intersection(lost)
     lost = list(set(lost) - inter_num)
     reserve = list(set(reserve) - inter_num)
