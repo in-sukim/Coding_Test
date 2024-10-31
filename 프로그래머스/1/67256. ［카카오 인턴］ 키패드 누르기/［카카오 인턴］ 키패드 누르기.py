@@ -1,44 +1,54 @@
-def get_position(number):
+def count_move(current_num, target_num):
+    # 키패드를 좌표로 매핑
     keypad = {
         1: (0, 0), 2: (0, 1), 3: (0, 2),
         4: (1, 0), 5: (1, 1), 6: (1, 2),
         7: (2, 0), 8: (2, 1), 9: (2, 2),
-        '*': (3, 0), 0: (3, 1), '#': (3, 2)
+        '*': (3, 0), 0: (3, 1), '#': (3, 2),
+        10: (3, 0), 11: (3, 1), 12: (3, 2)
     }
-    return keypad[number]
-
-def get_distance(pos1, pos2):
-    return abs(pos1[0] - pos2[0]) + abs(pos1[1] - pos2[1])
+    
+    current = keypad[current_num]
+    target = keypad[target_num]
+    
+    return abs(current[0] - target[0]) + abs(current[1] - target[1])
 
 def solution(numbers, hand):
-    # 초기 위치 설정
-    left_pos = '*'
-    right_pos = '#'
+    L_dic = {
+        1 : 'L',
+        4 : 'L',
+        7 : 'L'
+    }
+    R_dic = {
+        3 : 'R',
+        6 : 'R',
+        9 : 'R'
+    }
+    cal_list = [2,5,8,0]
+    left, right = 10, 12
     result = ''
-    
     for number in numbers:
-        if number in [1, 4, 7]:
-            result += 'L'
-            left_pos = number
-        elif number in [3, 6, 9]:
-            result += 'R'
-            right_pos = number
-        else:
-            left_dist = get_distance(get_position(left_pos), get_position(number))
-            right_dist = get_distance(get_position(right_pos), get_position(number))
-            
-            if left_dist == right_dist:
-                if hand == "right":
-                    result += 'R'
-                    right_pos = number
-                else:
-                    result += 'L'
-                    left_pos = number
-            elif left_dist < right_dist:
-                result += 'L'
-                left_pos = number
+        if number not in cal_list:
+            if number in L_dic:
+                value = L_dic[number]
+                left = number
             else:
+                value = R_dic[number]
+                right = number
+            result += value
+        else:
+            left_cnt = count_move(left, number)
+            right_cnt = count_move(right, number)
+            if left_cnt == right_cnt:
+                result += hand[0].upper()
+                if hand == 'right':
+                    right = number
+                else:
+                    left = number
+            elif left_cnt > right_cnt:
                 result += 'R'
-                right_pos = number
-                
+                right = number
+            else:
+                result += 'L'
+                left = number
     return result
