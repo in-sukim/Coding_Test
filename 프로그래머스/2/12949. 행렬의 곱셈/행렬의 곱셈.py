@@ -1,12 +1,12 @@
 def solution(arr1, arr2):
-    answer = []
+    result = []
     for i in range(len(arr1)):
-        element_list = []
+        temp = []
         for j in range(len(arr2[0])):
-            element = 0
-            for k in range(len(arr1[0])):
-                # print(f"{i,k}, {j,k}")
-                element += arr1[i][k] * arr2[k][j]
-            element_list.append(element)
-        answer.append(element_list)
-    return answer
+            arr2_temp = []
+            for k in range(len(arr2)):
+                arr2_temp.append(arr2[k][j])
+            value = sum([i * j for i,j in zip(arr1[i], arr2_temp)])
+            temp.append(value)
+        result.append(temp)
+    return result
