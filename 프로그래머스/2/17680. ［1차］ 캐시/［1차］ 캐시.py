@@ -1,7 +1,7 @@
 from collections import deque
 def solution(cacheSize, cities):
     answer = 0
-    q = deque()
+    q = deque(maxlen = cacheSize)
 
     for i in cities:
         i = i.lower()
@@ -12,6 +12,6 @@ def solution(cacheSize, cities):
         else:
             answer += 5
             q.append(i)
-            if len(q) > cacheSize:
-                q.popleft()
+            # if len(q) > cacheSize:
+            #     q.popleft()
     return answer
