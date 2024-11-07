@@ -2,16 +2,14 @@ from collections import Counter
 def solution(topping):
     answer = 0
     old = Counter(topping)
-    young = set()
-
+    bro = set()
+    
     for i in topping:
         old[i] -= 1
-        young.add(i)
+        bro.add(i)
 
         if old[i] == 0:
             old.pop(i)
-        if len(old) == len(young):
+        if len(old) == len(bro):
             answer += 1
-    
-            
     return answer
