@@ -1,26 +1,34 @@
 import sys
 import re
 
-while True:
-  string = input()
-  if string == '.':
-    break
+def brakets(lines):
   stack = []
-  flag = 'yes'
-  for i in string:
+  for i in lines:
     if i == '(' or i == '[':
       stack.append(i)
-    elif i == ')' or i ==']':
+    elif i == ")":
       if not stack:
-        flag = 'no'
-        break
-      if i == ')' and stack[-1] == '(':
-        stack.pop()
-      elif i == ']' and stack[-1] == '[':
+        return 'no'
+      elif stack[-1] == '(':
         stack.pop()
       else:
-        flag = 'no'
-        break
-  if stack:
-    flag = 'no'
-  print(flag)
+        return 'no'
+    elif i == "]":
+      if not stack:
+        return 'no'
+      elif stack[-1] == '[':
+        stack.pop()
+      else:
+        return 'no'
+  if not stack:
+    return 'yes'
+  else:
+    return 'no'
+
+answer = []
+while True:
+  line = sys.stdin.readline()
+  if line == '.\n':
+    break
+  print(brakets(line))
+    
