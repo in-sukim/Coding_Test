@@ -3,32 +3,14 @@ import sys
 N = int(sys.stdin.readline())
 students = list(map(int, sys.stdin.readline().split()))
 
+stack = []
 order = 1
-waiting_stack = []
 for student in students:
-  if student == order:
+  stack.append(student)
+  while stack and stack[-1] == order:
+    stack.pop()
     order += 1
-    while waiting_stack and waiting_stack[-1] == order:
-      waiting_stack.pop()
-      order +=1
-    continue
-  else:
-    if not waiting_stack:
-      waiting_stack.append(student)
-    else:
-      if waiting_stack[-1] == order:
-        waiting_stack.pop()
-        order += 1
-      else:
-        waiting_stack.append(student)
-if not waiting_stack:
-  print('Nice')
+if stack:
+  print('Sad')
 else:
-  for i in waiting_stack[::-1]:
-    if i != order:
-      print('Sad')
-      break
-    else:
-      order += 1
-  if order == N:
-    print('Nice')
+  print("Nice")
