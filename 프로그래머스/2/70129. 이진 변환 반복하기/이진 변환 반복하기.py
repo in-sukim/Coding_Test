@@ -1,9 +1,11 @@
 def solution(s):
-    stage = 0
     remove_zero = 0
-    while int(s) > 1:
-        remove_zero += s.count('0')
-        stage += 1
-        s = s.replace('0','')
-        s = format(len(s), 'b')
-    return [stage, remove_zero]
+    cnt = 0
+    while len(s) > 1:
+        cnt_zero = s.count('0')
+        remove_zero += cnt_zero
+        cnt += 1
+        before_remove_zero_l = len(s) - cnt_zero
+        s = bin(before_remove_zero_l)[2:]
+    return [cnt, remove_zero]
+        
