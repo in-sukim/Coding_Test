@@ -4,10 +4,12 @@ def solution(s):
         if i == '(':
             stack.append(i)
         else:
-            if len(stack) == 0:
+            if not stack:
                 return False
             else:
-                stack.pop(-1)
-    return stack == []
-
-    
+                if stack[-1] == '(':
+                    stack.pop()
+    if stack:
+        return False
+    else:
+        return True
