@@ -1,5 +1,8 @@
 def solution(s):
-    s = list(map(int, s.split(' ')))
-    s.sort()
-    min_value, max_value = str(s[0]), str(s[-1])
-    return min_value + ' ' + max_value
+    s_list = list(map(int, s.split()))
+    s_list.sort()
+    result = str(s_list[0])+ ' ' + str(s_list[-1])
+    return result
+    
+    
+    
