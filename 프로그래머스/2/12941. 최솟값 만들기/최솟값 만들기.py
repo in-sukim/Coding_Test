@@ -1,17 +1,14 @@
 import heapq
 def solution(A,B):
-    a_heap = []
-    b_heap = []
-    
-    for i in A:
-        heapq.heappush(a_heap, i)
-    for j in B:
-        heapq.heappush(b_heap, (-j,j))
+    min_heap = []
+    max_heap = []
+    for i in range(len(A)):
+        heapq.heappush(min_heap, A[i])
+        heapq.heappush(max_heap, -B[i])
     
     answer = 0
-    while a_heap:
-        a_value = heapq.heappop(a_heap)
-        b_value = heapq.heappop(b_heap)[1]
-        answer += a_value * b_value
+    for i in range(len(min_heap)):
+        min_value = heapq.heappop(min_heap)
+        max_value = -heapq.heappop(max_heap)
+        answer += min_value * max_value
     return answer
-        
