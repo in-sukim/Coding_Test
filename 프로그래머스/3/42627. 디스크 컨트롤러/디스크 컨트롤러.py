@@ -1,9 +1,10 @@
 import heapq
+
 def solution(jobs):
-    answer = 0
     now = 0
-    i = 0
     start = -1
+    answer = 0
+    i = 0
     heap = []
     
     while i < len(jobs):
