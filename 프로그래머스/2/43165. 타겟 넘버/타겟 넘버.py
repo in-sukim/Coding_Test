@@ -1,14 +1,20 @@
+from collections import deque
+
 def solution(numbers, target):
-    n = len(numbers)
     answer = 0
-    def dfs(idx, result):
-        if idx == n:
-            if result == target:
-                nonlocal answer
-                answer += 1
-            return 
+    q = deque()
+    q.append([numbers[0],0])
+    q.append([-1*numbers[0],0])
+
+    n = len(numbers)
+    while q:
+        temp , idx = q.popleft()
+        idx += 1
+        if idx < n:
+            q.append([temp + numbers[idx], idx])
+            q.append([temp - numbers[idx], idx])
         else:
-            dfs(idx+1, result + numbers[idx])
-            dfs(idx+1, result - numbers[idx])
-    dfs(0,0)
+            if temp == target:
+                answer += 1
     return answer
+    
